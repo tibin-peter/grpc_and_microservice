@@ -1,0 +1,21 @@
+# Binaries
+bin/
+*.exe
+*.out
+
+# Go build
+*.test
+
+# Environment files
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Docker volumes
+data/
