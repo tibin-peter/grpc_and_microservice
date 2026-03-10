@@ -1,0 +1,70 @@
+syntax = "proto3";//version
+
+package user; //package name logically
+
+option go_package = "grpc_and_microservice/proto/user";//tell the path
+
+service UserService{ //it create the interface
+
+  // create new user
+  rpc Register(RegisterRequest)returns (RegisterResponse);
+
+  //login user and create tokens
+  rpc Login(LoginRequest) returns (LoginResponse);
+
+  //for refresh 
+  rpc RefreshToken (RefreshTokenRequest)returns (RefreshTokenResponse);
+
+  //validate access token
+  rpc ValidateToken (ValidateTokenRequest) returns (ValidateTokenResponse);
+
+  //logout user
+  rpc Logout (LogoutRequest)returns (LogoutResponse);
+}
+
+message RegisterRequest{
+  string name = 1;
+  string email = 2;
+  string password = 3;
+}
+
+message RegisterResponse {
+  int64 id = 1;
+  string email = 2;
+}
+
+message LoginRequest {
+  string email = 1;
+  string  password = 2;
+}
+
+message LoginResponse{
+  string access_token = 1;
+  string refresh_token = 2;
+}
+
+message RefreshTokenRequest{
+  string refresh_token = 1;
+}
+
+message RefreshTokenResponse{
+  string access_token = 1;
+}
+
+message ValidateTokenRequest{
+  string access_token = 1;
+}
+
+message ValidateTokenResponse{
+  int64 user_id = 1;
+  string email = 2;
+  bool valid = 3;
+}
+
+message LogoutRequest{
+  string refresh_token = 1;
+}
+
+message LogoutResponse{
+  bool success = 1;
+}
