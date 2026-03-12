@@ -2,6 +2,7 @@ package db
 
 import (
 	"fmt"
+	"grpc_and_microservice/user-service/internal/model"
 	"log"
 	"os"
 
@@ -36,6 +37,7 @@ func ConnectPostgres() *gorm.DB{
 	if err != nil {
 		log.Fatal("Failed to connect database:", err)
 	}
+	db.AutoMigrate(&model.User{})
 
 	fmt.Println("User Service connected to PostgreSQL")
 

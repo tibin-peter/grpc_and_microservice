@@ -30,7 +30,7 @@ func main() {
 	// handler
 	userHandler := handler.NewUserHandler(userService)
 
-	lis, err := net.Listen("tcp", ":50051")
+	lis, err := net.Listen("tcp",":50051")
 	if err != nil {
 		log.Fatal(err)
 	}
